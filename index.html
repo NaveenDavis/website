@@ -42,9 +42,11 @@
                 </div>
                 <div class="about-col-2">
                     <h1 class="sub-title">About Me</h1><br>
-                    <p>Hello, I'm Naveen, a passionate and innovative Software Engineer with a deep love for crafting robust and user-friendly applications. With a background in computer science and years of hands-on experience, I thrive on transforming complex ideas into practical solutions.
+                    <p>Welcome to my portfolio website! I'm Naveen, a passionate and experienced full-stack software engineer with a strong focus on backend development using Java. With a deep understanding of software architecture and a knack for problem-solving, I've crafted efficient and scalable solutions that drive seamless user experiences.
 
-                        My journey in the world of software engineering began with a fascination for technology during my early years. Throughout my education and career, I've had the opportunity to work on diverse projects, gaining expertise in various programming languages and technologies. From web development to mobile applications, I have a keen eye for detail and enjoy tackling challenging problems.
+Throughout my journey, I've honed my skills in designing and implementing robust backend systems that power applications. From creating APIs to managing databases, I thrive in architecting the core of applications that ensure smooth functionality and data integrity.
+
+This portfolio showcases a collection of my projects that highlight my expertise in Java backend development. I invite you to explore how I've tackled challenges, optimized performance, and collaborated with teams to deliver exceptional results. Thank you for visiting, and I look forward to sharing my coding journey with you.
                     </p>
                     <div class="tab-titles">
                         <p class="tab-links active-links" onclick="opentab('skills')">Skills</p>
@@ -161,6 +163,7 @@
                          <button type="submit" class="btn btn2">Submit</button>
                      </form>
                      <span id="msg"></span>
+					 <span id="msgsumbit"></span>
                 </div>
              </div>
          </div>
@@ -200,15 +203,19 @@
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzJBSgDfF8hesS_6P83Ji5aUfuUtUvlF70CVB6GkBI9eXJH_0dklXJG3bMjZjnKuTbX_Q/exec'
         const form = document.forms['submit-to-google-sheet']
         const msg=document.getElementById("msg");
+		const msgsumbit=document.getElementById("msgsumbit");
       
         form.addEventListener('submit', e => {
+		
           e.preventDefault()
+		 msgsumbit.innerHTML="Message Added wait for 2 Sec...."
           fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response => {
+			    msgsumbit.innerHTML=""
                 msg.innerHTML="Message sent successfully"
                 setTimeout(function(){
                     msg.innerHTML=""
-                },5000)
+                },3000)
                  form.reset()
             })
             .catch(error => console.error('Error!', error.message))
