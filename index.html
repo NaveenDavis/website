@@ -207,7 +207,7 @@ This portfolio showcases a collection of my projects that highlight my expertise
         form.addEventListener('submit', e => {
 
           e.preventDefault()
-		 msgsumbit.innerHTML="Message Added wait for 2 Sec...."
+		 msgsumbit.innerHTML="Message successfully added"
           fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response => {
 			    msgsumbit.innerHTML=""
