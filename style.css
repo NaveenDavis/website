@@ -409,3 +409,104 @@ nav .fa-solid {
 #uparrow{
 color: #ff004f;
 }
+
+/* Existing CSS styles */
+
+/* Existing CSS styles */
+
+.skill-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.skill-card {
+    background-color:#080808;
+    box-shadow: 0 4px 8px rgba(97, 229, 238, 0.897);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 188px;
+    height: 156px;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.skill-card:hover {
+    transform: translateY(-5px);
+}
+
+.skill-card img {
+    margin-top: 24px;
+    width: 80px; 
+    height: 80px; 
+    object-fit: contain;
+    transition: transform 0.3s ease-in-out; 
+}
+.skill-card:hover img {
+    transform: scale(1.5); 
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: #666;
+}
+.card1{
+    box-shadow: 0 4px 8px rgba(255, 144, 16, 0.897); 
+}
+.card2{
+    box-shadow: 0 4px 8px rgba(91, 255, 140, 0.897); 
+}
+.card3{
+    box-shadow: 0 4px 8px rgba(252, 236, 17, 0.897); 
+}
+.card4{
+    box-shadow: 0 4px 8px rgba(6, 99, 219, 0.897); 
+}
+.card5{
+    box-shadow: 0 4px 8px rgba(4, 168, 39, 0.897); 
+}
+.card6{
+    box-shadow: 0 4px 8px rgba(238, 114, 42, 0.897); 
+}
+.card7{
+    box-shadow: 0 4px 8px rgba(41, 255, 244, 0.897); 
+}
+.card8{
+    box-shadow: 0 4px 8px rgba(245, 43, 16, 0.897); 
+}
+.card9{
+    box-shadow: 0 4px 8px rgba(103, 4, 196, 0.897); 
+}
+.card10{
+    box-shadow: 0 4px 8px rgba(27, 192, 192, 0.897); 
+}
+.card11{
+    box-shadow: 0 4px 8px rgba(221, 112, 22, 0.897); 
+}
+.card12{
+    box-shadow: 0 4px 8px rgba(20, 53, 241, 0.897); 
+}
+.card14{
+    box-shadow: 0 4px 8px rgba(21, 135, 228, 0.897); 
+}
+.card13{
+    box-shadow: 0 4px 8px rgba(252, 160, 23, 0.897); 
+}
+.card15{
+    box-shadow: 0 4px 8px rgba(19, 236, 182, 0.897); 
+}
