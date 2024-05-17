@@ -510,3 +510,86 @@ color: #ff004f;
 .card15{
     box-shadow: 0 4px 8px rgba(19, 236, 182, 0.897); 
 }
+.icons{
+    top:50%;
+    left: 0;
+    transform: translateY(-50%);
+    position: fixed;
+    z-index: 1000;
+   
+
+}
+.icons ul{
+    padding: initial;
+    margin: 10px;
+}
+.icons ul li {
+    height: 40px;
+    width: 40px;
+    list-style-type: none;
+    padding-left: 12px;
+    padding-top: 10px;
+    margin-top: 8px;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    
+}
+.github{
+    border-radius:40% 20% 50% 20%;
+    background-color:#24d7f7;
+}
+.youtube{
+    border-radius:40% 20% 50% 20%;
+    background-color: #ff0000; 
+}
+.instagram{
+    border-radius:40% 20% 50% 20%;
+    background-color: #ff6464; 
+}
+.linkedin{
+    border-radius:40% 20% 50% 20%;
+    background-color: #007bb5; 
+}
+.icons ul li:hover{
+    padding-left: 30px;
+    width: 80px;
+    transition: 0.8s;
+}
+.icons a i {
+    display: block;
+    animation: loading 5s ease-in-out ;
+}
+.icons a:nth-child(1) i {
+    animation-delay: 0.1s;
+}
+
+.icons a:nth-child(2) i {
+    animation-delay: 0.2s;
+}
+
+.icons a:nth-child(3) i {
+    animation-delay: 0.3s;
+}
+
+.icons a:nth-child(4) i {
+    animation-delay: 0.4s;
+}
+
+@keyframes loading {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(360deg);
+    }
+}
+.icons a {
+    color: #000;
+    text-decoration: none;
+    transition: transform 0.3s, color 0.3s;
+}
+.icons a:hover {
+    color: #007bff;
+    transform: scale(1.2);
+}
