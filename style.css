@@ -593,3 +593,32 @@ color: #ff004f;
     color: #007bff;
     transform: scale(1.2);
 }
+@media only screen and (max-width:600px){
+    .icons{
+        
+        top:50%;
+        left: 0;
+        transform: translateY(-50%);
+        position: fixed;
+        z-index: 1000;
+    }
+    .icons ul li {
+        height: 20px;
+        width: 20px;
+        list-style-type: none;
+        padding-left: 04px;
+        padding-top: 04px;
+        margin-top: 8px;
+        
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .icons ul{
+        padding: initial;
+        margin: 04px;
+    }
+    .icons a i {
+        font-size: 10px; /* Adjust the icon size */
+    }
+}
