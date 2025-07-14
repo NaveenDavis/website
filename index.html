@@ -1,628 +1,364 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'poppins',sans-serif;
-    box-sizing:border-box;
-}
-html{
-    scroll-behavior: smooth;
-}
-body{
-    background: #080808;
-    color: #fff;
-}
-#header{
-    width: 100%;
-    height: 100vh;
-    /*background-image: url(images/backgroundimage4.jpeg); */
-    background-image: url(images/nav2.jpg);
-    background-image:linear-gradient(rgba(61, 59, 59, 0.1),rgba(22, 21, 21, 0)),url(images/nav2.jpg);
-    background-size: cover;
-    background-position: center;
-}
-.container{
-padding: 10px 10%;
-}
-nav{
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
-     flex-wrap: wrap;
-}
-.logo{
-    width: 140px;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naveen's Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+	<link rel="website icon" type="svg" 
+    href="images/bannerlogo.png" >
+	</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="images/logo.jpeg" class="logo">
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#technical-skills">Skills</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>  
+                    <li><a href="#contact">Contact</a></li> 
+                    <i class="fa-regular fa-circle-xmark" onclick="closemenu()"></i>               
+                </ul>
 
-}
-nav ul li{
-    display: inline-block;
-    list-style: none;
-    margin: 10px 20px;
-}
-nav ul li a{
-    color:#fff;
-    text-decoration: none;
-    font-size: 18px;
-    position: relative;
-}
-nav ul li a::after{
-    content: '';
-    width: 0;
-    height: 3px;
-    background: #ff004f;
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    transition: 0.5s;
-}
-nav ul li a:hover::after{
-    width: 100%;
-}
-.header-text{
-    margin-top: 20%;
-    font-size: 30px;
-}
-.header-text h1{
-    margin-top: 20px;
-    font-size: 60px;
-}
-.header-text h1 span{
-    color: #ff004f;
-}
-/*-------------------About---------------------*/
-#about{
-    padding: 80px 0;
-    color: #ababab;
-}
-.row{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-.about-col-1{
-    flex-basis: 35%;
+                <i class="fa-solid fa-bars"onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p>Sofware Developer</p>
+                <h1>Hi, I'm <span>Naveen </span>Davis<br> From India</h1>
+             </div>
+        </div>
 
-}
-.about-col-1 img{
-    width: 100%;
-    border-radius: 15px;
-}
-.about-col-2{
-    flex-basis: 60%;
+    </div>
+    <!-------------about------------->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="images/nav.jpeg" alt=""> 
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1><br>
+                    <p>Welcome to my portfolio website! I'm Naveen, a passionate and experienced full-stack software engineer with a strong focus on backend development using Java. With a deep understanding of software architecture and a knack for problem-solving, I've crafted efficient and scalable solutions that drive seamless user experiences.
 
-}
-.sub-title{
-    font-size:60px;
-    font-weight:600;
-    color: #fff;
-}
-.tab-titles{
-    display: flex;
-    margin: 20px 0 40px;
+Throughout my journey, I've honed my skills in designing and implementing robust backend systems that power applications. From creating APIs to managing databases, I thrive in architecting the core of applications that ensure smooth functionality and data integrity.
 
-}
-.tab-links{
-    margin-right: 50px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    position: relative;
-}
-.tab-links::after{
-content: '';
-width: 0;
-height: 3px;
-background: #ff004f;
-position: absolute;
-left: 0;
-bottom: -8px;
-transition: 0.5s;
-}
-.tab-links.active-links::after{
-    width: 50%;
-}
-.tab-contents ul li{
-list-style: none;
-margin: 10px 0;
-}
-.tab-contents ul li span{
-    color: #f82165;
-    font-size: 14px;
-}
-.tab-contents{
-    display: none;
-}
-.tab-contents.active-tab{
-display: block;
-}
-/*-------------------services Naveen---------------------*/
-#services{
-    padding: 30px 0;
-}
-.services-list{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    grid-gap: 40px;
-    margin-top: 50px;
-}
-.services-list div{
-    background: #262626;
-    padding: 40px;
-    font-size: 13px;
-    font-weight: 300;
-    border-right: 10px;
-    border-radius: 15px;
-    transition: background 0.5s,transform 0.5s; 
-}
-.services-list div i{
-    font-size: 50px;
-    margin-bottom: 30px;
-}
-.services-list div h2{
-    font-size: 30px;
-    font-weight: 500;
-    margin-bottom: 15px;
+This portfolio showcases a collection of my projects that highlight my expertise in Java backend development. I invite you to explore how I've tackled challenges, optimized performance, and collaborated with teams to deliver exceptional results. Thank you for visiting, and I look forward to sharing my coding journey with you.
+                    </p>
+                    <div class="tab-titles">
+                        <p class="tab-links active-links" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links"  onclick="opentab('experience')">Experience</p>
+                        <p class="tab-links"  onclick="opentab('educations')">Educations</p>
+                    </div>
+                    <div class="tab-contents active-tab " id="skills">
+                        <ul>
+                            <li> <span>Backend Development</span><br>Complex Backend Application</li>
+                            <li> <span>Web Development</span><br>Web app Development</li>
+                            <li> <span>App Development</span><br>Building Android/ios apps</li>
+                            <li> <span>UI/UX</span><br>Desiging Web/Apps interfaces</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents " id="experience">
+                        <ul>
+                            <li> <span>2022 - 2025(Current)</span><br>Fullstack Developer @Ibs Software</li>
+                            <li> <span>2022 - (Jan-Mar)</span><br>Data Science Internship</li>
+                            <li> <span>2021 - 2022</span><br>Circuit Designer @ATWIC R&D</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents " id="educations">
+                        <ul>
+                            <li> <span>2021</span><br>B-Tech from APJ Abdul Kalam Technological University</li>
+                            <li> <span>2017</span><br>Plus Two from GVHSS Cherpu</li>
+                            <li> <span>2015</span><br>Tenth from GHSS Pattikad</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------------Services------------->
+    <div id="services">
+        <div class="container">
+            <h1 class="sub-title">My Services</h1>
+            <div class="services-list">
+              <div>
+                  <i class="fa-solid fa-code"></i>
+                  <h2>Web Development</h2>
+                  <p>web development Works-Portfolio,e-commerce,Personal Website,Social Media</p>
+                  <a href="#">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-crop"></i>
+                    <h2>Backend Development</h2>
+                    <p>Backend Development Works-API Development,Online Booking System Backend,Real-Time Messaging Application Backend</p>
+                    <a href="#">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-brands fa-app-store"></i>
+                    <h2>Deployment and DevOps/Database Management</h2>
+                    <p>Proficiency in database systems such as MySQL, MongoDB, PostgreSQL,along with expertise in SQL or NoSQL databases. Additionally, showcasing knowledge of deploying web applications to cloud platforms like AWS, Azure, or Google Cloud, and familiarity with CI/CD pipelines using tools like Jenkins or GitLab CI/CD</p>
+                    <a href="#">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------------Technical Skills------------->
+    <div id="technical-skills">
+        <div class="container">
+            <h1 class="sub-title">Technical Skills</h1><br>
+            <div class="skill-cards">
+                <div class="skill-card card1">
+                    <img src="images/java.png" alt="Java">  
+                    <div class="card-content">
+                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Java</h2>
+                    </div>
+                </div>
+                
+                <div class="skill-card card2">
+                    <img src="images/nodejs.png" alt="Node JS" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Node JS</h2>
+                    </div>
+                </div>
+                
+                <div class="skill-card card3" >
+                    <img src="images/python.png" alt="Python" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Python</h2>
+                    </div>
+                </div>
+                <div class="skill-card card4">
+                    <img src="images/kotlin.png" alt="kotlin" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Kotlin</h2>
+                    </div>
+                </div>
+                <div class="skill-card card5">
+                    <img src="images/springboot.png" alt="SpringBoot" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Spring Boot</h2>
+                    </div>
+                </div>
+                <div class="skill-card card9">
+                    <img src="images/bootstrap.png" alt="Bootstrap" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Bootstrap</h2>
+                    </div>
+                </div>                
+                <div class="skill-card card7">
+                    <img src="images/react.png" alt="ReactJS" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">ReactJS</h2>
+                    </div>
+                </div>
+                <div class="skill-card card8">
+                    <img src="images/angular.png" alt="Angular" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Angular</h2>
+                    </div>
+                </div>
+                <div class="skill-card card6">
+                    <img src="images/html.png" alt="HTML" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">HTML</h2>
+                    </div>
+                </div>
+                <div class="skill-card card10">
+                    <img src="images/tailwind.png" alt="ReactJS" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff; font-family: Times, Times New Roman, serif;">Tailwind CSS</h2>
+                    </div>
+                </div>
+                <div class="skill-card card12">
+                    <img src="images/postgresql.png" alt="PostgreSQL" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff; font-family: Times, Times New Roman, serif;">PostgreSQL</h2>
+                    </div>
+                </div>
+                <div class="skill-card card11">
+                    <img src="images/oracle.png" alt="OracleSQL" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff; font-family: Times, Times New Roman, serif;">OracleSQL</h2>
+                    </div>
+                </div>       
+                <div class="skill-card card14">
+                    <img src="images/docker.png" alt="Docker" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff; font-family: Times, Times New Roman, serif;">Docker</h2>
+                    </div>
+                </div>
+                <div class="skill-card card13">
+                    <img src="images/aws.png" alt="AWS" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff; font-family: Times, Times New Roman, serif;">AWS</h2>
+                    </div>
+                </div>
+                <div class="skill-card card15">
+                    <img src="images/googlecloud.png" alt="GoogleCloud" >  
+                    <div class="card-content">
+                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Google Cloud</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------------portfolio------------->
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">My Work</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="images/devpayinsightimg.png" alt="">
+                    <div class="layer">
+                       <h3 style="font-weight: bold;">DevPayInsight.com <br><br>(Spring Boot Web App)</h3>
+                       <p>DevPayInsight.com is a go-to destination for developers, offering invaluable assistance in resolving payment-related issues, exceptional exception handling, and insightful analysis, all tailored to streamline development processes.</p>
+                       <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/codesphereimg.jpg" alt="">
+                    <div class="layer">
+                        <h3 style="font-weight: bold;">CODESPHERE <br><br> (Full Stack App)</h3>
+                        <p>The app aids developers in simplifying their development process by offering AI assistance, idea-sharing features, real-time chatting capabilities, and more.
+                        </p>
+                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                     </div>
+                </div>
+                <div class="work">
+                    <img src="images/ideogramimg.png" alt="">
+                    <div class="layer">
+                        <h3 style="font-weight: bold;">Ideogram</h3>
+                        <p>Ideogram is a dynamic platform fostering idea exchange and collaboration, connecting individuals worldwide to share innovative concepts and insights.</p>
+                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                     </div>
+                </div>
+            </div>
+            <div class="work-list">
+                <div class="work">
+                    <img src="images/chating.png" alt="">
+                    <div class="layer">
+                       <h3 style="font-weight: bold;">Sandesh<br><br> (stack App)</h3>
+                       <p>Application offers seamless communication for users, providing a secure and user-friendly platform to connect with friends and family.With its real-time messaging capabilities and intuitive interface, the chat application ensures effortless communication, fostering meaningful connections and interactions.</p>
+                       <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/crickfeverzone.png" alt="">
+                    <div class="layer">
+                        <h3 style="font-weight: bold;">CricFever.com</h3>
+                        <p>CricFever serves as the ultimate destination for cricket enthusiasts, delivering live scores, venue information, and comprehensive match details.
+                        </p>
+                        <a href="https://naveendavis.github.io/CricketFeverZone/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                     </div>
+                </div>
+                <div class="work">
+                    <img src="images/aiassistanceimg.png" alt="">
+                    <div class="layer">
+                        <h3 style="font-weight: bold;">CodeMateAI</h3>
+                        <p>CodeMateAI is an innovative platform designed to assist developers with advanced AI-driven tools, streamlining the coding process and enhancing productivity.</p>
+                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                     </div>
+                </div>
+            </div>
+           <a href="#" class="btn">See more</a>
+        </div>
+    </div>
+     <!-------------------contact naveen davis------------->
+     <div id="contact">
+         <div class="container">
+             <div class="row">
+                 <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fa-solid fa-paper-plane"></i>naveendavis99@gmail.com</p>
+                    <p><i class="fa-solid fa-square-phone"></i>91-9746550161</p>
+                    <div class="socialmedia-ions">
+                        <a href="https://github.com/NaveenDavis/"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.youtube.com/@Codesphere-co"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/naveen_doz?igsh=MTY0Mjc5b3h3bDFueg=="><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/naveendavis"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <a href=""  class="btn btn2">Download Cv</a>
 
-}
-.services-list div a{
-    text-decoration: none;
-    color: #fff;
-    font-size: 12px;
-    margin-top: 20px;
-    display: inline-block;
 
-}
-.services-list div:hover{
- background: #ff004f;
- transform: translateY(-10px);
-}
-/*-------------------portfolio Naveen---------------------*/
-#portfolio{
-    padding: 50px 0;
-}
-.work-list{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    grid-gap: 40px;
-    margin-top: 50px; 
-}
-.work{
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-}
-.work img{
-    width: 100%;
-    border-radius: 10px;
-    display: block;
-    transition:transform 0.5s;
-}
-.layer{
-    width: 100%;
-    height: 0%;
-    background: linear-gradient(rgba(0,0,0,0.6),#ff004f);
-    border-radius: 10px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    text-align: center;
-    font-size: 14px;
-    transition: height 0.5s;
-}
-.layer h3{
-    font-weight: 500;
-    margin-bottom:20px;
-}
-.layer a{
-    margin-top: 20px ;
-    color:#ff004f;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 60px;
-    background: #fff;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    text-align: center;
-}
-.work:hover img{
-    transform: scale(1.1);
-}
-.work:hover .layer{
-    height: 100%;
-}
-.btn{
-    display: block;
-    margin: 50px auto;
-    width :fit-content;
-    border:1px solid #ff004f;
-    padding:14px 50px;
-    border-radius: 6px;
-    text-decoration: none;
-    color: #fff;
-    transition: background 0.5s;
-}
-.btn:hover{
-    background: #ff004f;
-
-}
-/*-------------------contact Naveen---------------------*/
-.contact-left{
-    flex-basis: 35%;
-
-}
-.contact-right{
-    flex-basis: 60%;
+                 </div>
+                 <div class="contact-right">
+                     <form name="submit-to-google-sheet" >
+                         <input type="text" name="Name" placeholder="Your Name" required>
+                         <input type="email" name="Email" placeholder="Your Email" required>
+                         <textarea name="Message"  rows="6" placeholder="Your Meassage"></textarea>
+                         <button type="submit" class="btn btn2">Submit</button>
+                     </form>
+                     <span id="msg"></span>
+					 <span id="msgsumbit"></span>
+                </div>
+             </div>
+         </div>
+         <div class="uparrow-header">
+             <a href="#header"><i class="fa-solid fa-arrow-up-from-bracket" id="uparrow"></i> </a>
+         </div>
+         <div class="copy-write">
+             <p class="text-copy"> &copy; Copyright <Span>Naveen Davis</Span>. All Rights Reserved </p>
+             <p class="text-design">Designed by Naveen Davis</p>
+         </div>
+     </div>
+     <div class="icons">
+       <ul>
+            <a href="https://github.com/NaveenDavis/"><li class="github"><i class="fa-brands fa-github"></i></li></a>
+            <a href="https://www.youtube.com/@Codesphere-co"><li class="youtube"><i class="fa-brands fa-youtube"></i></li></a>
+            <a href="https://www.linkedin.com/in/naveendavis"><li class="linkedin"><i class="fa-brands fa-linkedin"></i></li></a>
+            <a href="https://www.instagram.com/naveen_doz?igsh=MTY0Mjc5b3h3bDFueg=="><li class="instagram"><i class="fa-brands fa-instagram"></i></li></a>
+            
+       </ul>
+    </div>
     
-}
-.contact-left p{
-   margin-top: 30px;
+    <script>
+        var tablinks =document.getElementsByClassName("tab-links");
+        var tabcontents =document.getElementsByClassName("tab-contents");
+        function opentab(tabname){
+          for(tablink of tablinks){
+            tablink.classList.remove("active-links");
+          }
+          for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+          }
+          event.currentTarget.classList.add("active-links");
+          document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+    <script>
+        var sidemenu=document.getElementById("sidemenu")
+        function openmenu(){
+            sidemenu.style.right="0";
+        }
+        function closemenu(){
+            sidemenu.style.right="-200px";
+        }
+    </script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzJBSgDfF8hesS_6P83Ji5aUfuUtUvlF70CVB6GkBI9eXJH_0dklXJG3bMjZjnKuTbX_Q/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg=document.getElementById("msg");
+		const msgsumbit=document.getElementById("msgsumbit");
 
-}
-.contact-left p i{
-color: #ff004f;
-margin-right: 15px;
-font-size: 25px;
-}
-.socialmedia-ions{
-    margin-top: 30px;
-}
-.socialmedia-ions a{
-    text-decoration: none;
-    font-size: 30px;
-    margin-right: 15px;
-    color: #ababab;
-    display: inline-block;
-    transition: transform 0.5s;
-}
-.socialmedia-ions a:hover{
-color: #ff004f;
-transform: translateY(-5px);
-}
-.btn.btn2{
-    display: inline-block;
-    background: #ff004f;
-}
-.contact-right{
-    width: 100%;
-}
-form input,form textarea{
-    width: 100%;
-    border:0;
-    outline: none;
-    background: #262626;
-    padding: 15px;
-    margin: 15px 0;
-    color: #fff;
-    font-size: 18px;
-    border-radius: 6px;
-}
-form .btn2{
-     padding: 14px 60px;
-     font-size: 18px;
-     margin-top: 20px;
-     cursor: pointer;
+        form.addEventListener('submit', e => {
 
-}
-.copy-write{
-    width: 100%;
-    text-align: center;
-    padding: 25px 0;
-    background: #262626;
-    font-weight: 300;
-    margin-top: 20px;
-}
-.text-copy span{
-    color: #ff004f;
-}
-.text-design{
-    font-size: 12px;
-    margin-top: 12px;
-}
-/*-------------------css for small query---------------------*/
-nav .fa-regular{
-    display: none;
-} 
-nav .fa-solid {
-    display: none;
-}
-@media only screen and (max-width:600px){
-    #header{ 
-        background-image: url(images/nav3.jpg);
-    }
-    .header-text{
-        margin-top: 100%;
-        font-size: 16px;
-    }
-    .header-text h1{
-        font-size: 30px;
-    }
-    nav .fa-regular{
-        display: block;
-        font-size: 25px;
-    } 
-    nav .fa-solid {
-        display: block;
-        font-size: 25px;
-    }
-    nav ul{
-        background: #ff004f;
-        position: fixed;
-        top:0;
-        right: -200px;
-        width: 200px;
-        height: 100vh;
-        padding-top: 50px;
-        z-index: 2;
-        transition: right 0.5s;
-    }
-    nav ul li{
-        display: block;
-        margin: 25px;
-
-    }
-    nav ul .fa-solid{
-      position: absolute;
-      top: 25px;
-      left: 25px;
-      cursor: pointer;
-    }
-    nav ul .fa-regular{
-        position: absolute;
-        top: 25px;
-        left: 25px;
-        cursor: pointer;
-      }
-      .sub-title{
-          font-size: 40px;
-      }
-      .about-col-1, .about-col-2{
-          flex-basis: 100%;
-      }
-      .about-col-1{
-          margin-bottom: 30px;
-      }
-      .about-col-2{
-          font-size: 14px;
-      }
-      .tab-links{
-          font-size: 16px;
-          margin-right: 20px;
-      }
-      .contact-left,.contact-right{
-          flex-basis: 100%;
-      }
-      .copy-write{
-          font-size: 14px;
-      }
-
-}
-#msg{
-    color: #61b752;
-    margin-top: -40px;
-    display: block;
-}
-#uparrow{
-color: #ff004f;
-}
-
-/* Existing CSS styles */
-
-/* Existing CSS styles */
-
-.skill-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.skill-card {
-    background-color:#080808;
-    box-shadow: 0 4px 8px rgba(97, 229, 238, 0.897);
-    border-radius: 8px;
-    overflow: hidden;
-    width: 188px;
-    height: 156px;
-    align-items: center;
-    transition: transform 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-}
-
-
-
-.skill-card:hover {
-    transform: translateY(-5px);
-}
-
-.skill-card img {
-    margin-top: 24px;
-    width: 80px; 
-    height: 80px; 
-    object-fit: contain;
-    transition: transform 0.3s ease-in-out; 
-}
-.skill-card:hover img {
-    transform: scale(1.5); 
-}
-
-.card-content {
-    padding: 20px;
-}
-
-.card-content h2 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.card-content p {
-    font-size: 1rem;
-    color: #666;
-}
-.card1{
-    box-shadow: 0 4px 8px rgba(255, 144, 16, 0.897); 
-}
-.card2{
-    box-shadow: 0 4px 8px rgba(91, 255, 140, 0.897); 
-}
-.card3{
-    box-shadow: 0 4px 8px rgba(252, 236, 17, 0.897); 
-}
-.card4{
-    box-shadow: 0 4px 8px rgba(6, 99, 219, 0.897); 
-}
-.card5{
-    box-shadow: 0 4px 8px rgba(4, 168, 39, 0.897); 
-}
-.card6{
-    box-shadow: 0 4px 8px rgba(238, 114, 42, 0.897); 
-}
-.card7{
-    box-shadow: 0 4px 8px rgba(41, 255, 244, 0.897); 
-}
-.card8{
-    box-shadow: 0 4px 8px rgba(245, 43, 16, 0.897); 
-}
-.card9{
-    box-shadow: 0 4px 8px rgba(103, 4, 196, 0.897); 
-}
-.card10{
-    box-shadow: 0 4px 8px rgba(27, 192, 192, 0.897); 
-}
-.card11{
-    box-shadow: 0 4px 8px rgba(221, 112, 22, 0.897); 
-}
-.card12{
-    box-shadow: 0 4px 8px rgba(20, 53, 241, 0.897); 
-}
-.card14{
-    box-shadow: 0 4px 8px rgba(21, 135, 228, 0.897); 
-}
-.card13{
-    box-shadow: 0 4px 8px rgba(252, 160, 23, 0.897); 
-}
-.card15{
-    box-shadow: 0 4px 8px rgba(19, 236, 182, 0.897); 
-}
-.icons{
-    top:50%;
-    left: 0;
-    transform: translateY(-50%);
-    position: fixed;
-    z-index: 1000;
-   
-
-}
-.icons ul{
-    padding: initial;
-    margin: 10px;
-}
-.icons ul li {
-    height: 40px;
-    width: 40px;
-    list-style-type: none;
-    padding-left: 12px;
-    padding-top: 10px;
-    margin-top: 8px;
-    color: #fff;
-    justify-content: center;
-    align-items: center;
-    
-}
-.github{
-    border-radius:40% 20% 50% 20%;
-    background-color:#24d7f7;
-}
-.youtube{
-    border-radius:40% 20% 50% 20%;
-    background-color: #ff0000; 
-}
-.instagram{
-    border-radius:40% 20% 50% 20%;
-    background-color: #ff6464; 
-}
-.linkedin{
-    border-radius:40% 20% 50% 20%;
-    background-color: #007bb5; 
-}
-.icons ul li:hover{
-    padding-left: 30px;
-    width: 80px;
-    transition: 0.8s;
-}
-.icons a i {
-    display: block;
-    animation: loading 5s ease-in-out ;
-}
-.icons a:nth-child(1) i {
-    animation-delay: 0.1s;
-}
-
-.icons a:nth-child(2) i {
-    animation-delay: 0.2s;
-}
-
-.icons a:nth-child(3) i {
-    animation-delay: 0.3s;
-}
-
-.icons a:nth-child(4) i {
-    animation-delay: 0.4s;
-}
-
-@keyframes loading {
-    0%, 100% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(360deg);
-    }
-}
-.icons a {
-    color: #000;
-    text-decoration: none;
-    transition: transform 0.3s, color 0.3s;
-}
-.icons a:hover {
-    color: #007bff;
-    transform: scale(1.2);
-}
-@media only screen and (max-width:600px){
-    .icons{
-        
-        top:50%;
-        left: 0;
-        transform: translateY(-50%);
-        position: fixed;
-        z-index: 1000;
-    }
-    .icons ul li {
-        height: 20px;
-        width: 20px;
-        list-style-type: none;
-        padding-left: 04px;
-        padding-top: 04px;
-        margin-top: 8px;
-        
-        justify-content: center;
-        align-items: center;
-        
-    }
-    .icons ul{
-        padding: initial;
-        margin: 04px;
-    }
-    .icons a i {
-        font-size: 10px; /* Adjust the icon size */
-    }
-    .logo{
-        display: none;
-    }
-}
+          e.preventDefault()
+		 msgsumbit.innerHTML="Message successfully added"
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+			    msgsumbit.innerHTML=""
+                msg.innerHTML="Message sent successfully"
+                setTimeout(function(){
+                    msg.innerHTML=""
+                },3000)
+                 form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+      <script src="https://kit.fontawesome.com/f8021ea59e.js" crossorigin="anonymous"></script>
+    </body>
+    </html>
