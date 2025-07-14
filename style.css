@@ -14,8 +14,9 @@ body{
 #header{
     width: 100%;
     height: 100vh;
-    background-image: url(images/backgroundimage4.jpeg);
-    background-image:linear-gradient(rgba(61, 59, 59, 0.1),rgba(22, 21, 21, 0)),url(images/backgroundimage4.jpeg);
+    /*background-image: url(images/backgroundimage4.jpeg); */
+    background-image: url(images/nav2.jpg);
+    background-image:linear-gradient(rgba(61, 59, 59, 0.1),rgba(22, 21, 21, 0)),url(images/nav2.jpg);
     background-size: cover;
     background-position: center;
 }
@@ -332,7 +333,7 @@ nav .fa-solid {
 }
 @media only screen and (max-width:600px){
     #header{ 
-        background-image: url(images/BACKGROUNDFORMOB.jpeg);
+        background-image: url(images/nav3.jpg);
     }
     .header-text{
         margin-top: 100%;
@@ -620,5 +621,8 @@ color: #ff004f;
     }
     .icons a i {
         font-size: 10px; /* Adjust the icon size */
+    }
+    .logo{
+        display: none;
     }
 }
