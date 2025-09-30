@@ -1,277 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Naveen's Portfolio Website</title>
-    <link rel="stylesheet" href="style.css">
-	<link rel="website icon" type="svg" 
-    href="images/bannerlogo.png" >
-	</head>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="website icon" type="svg" href="images/bannerlogo.png" />
+    <style>
+        /* Enhanced Animation & Transition Styles */
+        
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff004f 0%, #ff6b9d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 1;
+            transition: all 1s ease-out;
+        }
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.1);
+        }
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Scroll-triggered animations */
+        .fade-in-up { opacity: 0; transform: translateY(50px); transition: all .8s cubic-bezier(.4,0,.2,1); }
+        .fade-in-up.animate { opacity: 1; transform: translateY(0); }
+        .fade-in-left { opacity: 0; transform: translateX(-50px); transition: all .8s cubic-bezier(.4,0,.2,1); }
+        .fade-in-left.animate { opacity: 1; transform: translateX(0); }
+        .fade-in-right { opacity: 0; transform: translateX(50px); transition: all .8s cubic-bezier(.4,0,.2,1); }
+        .fade-in-right.animate { opacity: 1; transform: translateX(0); }
+        .scale-in { opacity: 0; transform: scale(.8); transition: all .8s cubic-bezier(.4,0,.2,1); }
+        .scale-in.animate { opacity: 1; transform: scale(1); }
+        .rotate-in { opacity: 0; transform: rotate(-10deg) scale(.9); transition: all .8s cubic-bezier(.4,0,.2,1); }
+        .rotate-in.animate { opacity: 1; transform: rotate(0) scale(1); }
+
+        /* Header text */
+        .header-text { opacity: 0; transform: translateY(50px); animation: slideInUp 1.2s ease-out .8s forwards; }
+        .header-text p { opacity: 0; transform: translateY(30px); animation: slideInUp 1s ease-out 1.2s forwards; }
+        .header-text h1 { transform: translateY(30px); animation: slideInUp 1s ease-out 1.4s forwards; }
+        @keyframes slideInUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* Nav hover */
+        nav ul li a { transition: all .3s cubic-bezier(.4,0,.2,1); }
+        nav ul li a:hover { color: #ff004f; transform: translateY(-2px); }
+
+        /* Logo */
+        .logo { transition: all .3s ease; filter: drop-shadow(0 4px 8px rgba(255,0,79,.3)); }
+        .logo:hover { transform: scale(1.05) rotate(2deg); filter: drop-shadow(0 6px 16px rgba(255,0,79,.5)); }
+
+        /* Skill cards */
+        .skill-card { transition: all .4s cubic-bezier(.4,0,.2,1); position: relative; overflow: hidden; }
+        .skill-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg,transparent,rgba(255,255,255,.1),transparent);
+            transform: rotate(45deg); transition: all .5s ease; opacity: 0;
+        }
+        .skill-card:hover::before { opacity: 1; animation: shimmer 1.5s ease-in-out; }
+        @keyframes shimmer { from { transform: translateX(-100%) rotate(45deg);} to { transform: translateX(100%) rotate(45deg);} }
+        .skill-card:hover { transform: translateY(-10px) scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,.3); }
+
+        /* Services */
+        .services-list div { position: relative; overflow: hidden; }
+        .services-list div::before {
+            content: ''; position: absolute; inset: 0; left: -100%;
+            background: linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent); transition: left .5s ease;
+        }
+        .services-list div:hover::before { left: 100%; }
+        .services-list div i { transition: all .4s cubic-bezier(.4,0,.2,1); }
+        .services-list div:hover i { transform: scale(1.2) rotate(10deg); color: #fff; text-shadow: 0 0 20px rgba(255,255,255,.5); }
+
+        /* Work items */
+        .work { transition: all .4s cubic-bezier(.4,0,.2,1); }
+        .work:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(255,0,79,.2); }
+        .layer a { transition: all .3s cubic-bezier(.4,0,.2,1); }
+        .layer a:hover { background: #ff004f; color: #fff; transform: scale(1.1) rotate(5deg); }
+
+        /* Buttons */
+        .btn { position: relative; overflow: hidden; z-index: 1; }
+        .btn::before { content: ''; position: absolute; inset: 0; left: -100%; background: #ff004f; transition: left .3s ease; z-index: -1; }
+        .btn:hover::before { left: 0; }
+        .btn:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,0,79,.3); }
+
+        /* Tabs */
+        .tab-links { transition: all .3s cubic-bezier(.4,0,.2,1); }
+        .tab-links:hover { color: #ff004f; transform: translateY(-2px); }
+        .tab-contents ul li { transform: translateX(-20px); opacity: 0; transition: all .5s cubic-bezier(.4,0,.2,1); }
+        .tab-contents.active-tab ul li { transform: translateX(0); opacity: 1; }
+        .tab-contents.active-tab ul li:nth-child(1){transition-delay:.1s;}
+        .tab-contents.active-tab ul li:nth-child(2){transition-delay:.2s;}
+        .tab-contents.active-tab ul li:nth-child(3){transition-delay:.3s;}
+        .tab-contents.active-tab ul li:nth-child(4){transition-delay:.4s;}
+
+        /* Forms */
+        form input, form textarea { transition: all .3s cubic-bezier(.4,0,.2,1); border: 2px solid transparent; }
+        form input:focus, form textarea:focus { border-color: #ff004f; transform: translateY(-2px); }
+        form .btn2 { transition: all .3s cubic-bezier(.4,0,.2,1); }
+        form .btn2:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,0,79,.4); }
+
+        /* Social links */
+        .socialmedia-ions a { position: relative; overflow: hidden; }
+        .socialmedia-ions a::before {
+            content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(255,0,79,.2);
+            border-radius: 50%; transform: translate(-50%,-50%); transition: all .3s ease;
+        }
+        .socialmedia-ions a:hover::before { width: 100px; height: 100px; }
+
+        /* Up arrow */
+        #uparrow { transition: all .3s cubic-bezier(.4,0,.2,1); padding: 10px; border-radius: 50%; background: rgba(255,0,79,.1); }
+        #uparrow:hover { background: #ff004f; color: #fff; transform: translateY(-5px) scale(1.1); }
+
+        /* Messages */
+        #msg, #msgsumbit { transition: all .5s cubic-bezier(.4,0,.2,1); transform: translateY(-20px); opacity: 0; }
+        #msg.show, #msgsumbit.show { transform: translateY(0); opacity: 1; }
+
+        /* Mobile nav list transitions base */
+        nav ul { backdrop-filter: blur(20px); }
+        nav ul li { transform: translateX(50px); opacity: 0; transition: all .5s cubic-bezier(.4,0,.2,1); }
+        nav ul.active li { transform: translateX(0); opacity: 1; }
+        nav ul.active li:nth-child(1){transition-delay:.1s;}
+        nav ul.active li:nth-child(2){transition-delay:.2s;}
+        nav ul.active li:nth-child(3){transition-delay:.3s;}
+        nav ul.active li:nth-child(4){transition-delay:.4s;}
+        nav ul.active li:nth-child(5){transition-delay:.5s;}
+        nav ul.active li:nth-child(6){transition-delay:.6s;}
+
+        /* Floating Animation */
+        @keyframes float { 50% { transform: translateY(-20px); } }
+        .floating { animation: float 6s ease-in-out infinite; }
+        .floating:nth-child(2){ animation-delay: 2s; }
+        .floating:nth-child(3){ animation-delay: 4s; }
+
+        /* Typing */
+        .typing-text { overflow: hidden; border-right: 3px solid #ff004f; white-space: nowrap; margin: 0 auto; animation: typing 3.5s steps(40,end), blink-caret .75s step-end infinite; }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { 50% { border-color: #ff004f; } }
+
+        /* Parallax */
+        .parallax { transform: translateZ(0); transition: transform .1s; }
+
+        /* Stagger helpers */
+        .stagger-1{transition-delay:.1s;} .stagger-2{transition-delay:.2s;}
+        .stagger-3{transition-delay:.3s;} .stagger-4{transition-delay:.4s;}
+        .stagger-5{transition-delay:.5s;} .stagger-6{transition-delay:.6s;}
+
+        /* Sub-title */
+        .sub-title { position: relative; overflow: hidden; }
+        .sub-title::before { position: absolute; top: 0; left: 0; width: 0; height: 100%; color: #ff004f; overflow: hidden; transition: width 1s ease; }
+        .sub-title.animate::before { width: 100%; }
+        .sub-title { color: #9400ff; }
+
+        /* Performance hints */
+        .skill-card, .services-list div, .work, .tab-links, .btn { will-change: transform; }
+
+        /* ===== Floating Bottom Bar - mobile only ===== */
+        @media (max-width: 600px){
+          .bottom-bar{
+            position: fixed;
+            left: 50%;
+            bottom: 18px;
+            transform: translateX(-50%);
+            width: min(92%, 520px);
+            height: 64px;
+            padding: 0 14px;
+            background: #ffffff;
+            border: 2px solid #7c66ff33;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            z-index: 1005;
+            box-shadow: 0 8px 24px rgba(124,102,255,.18), 0 2px 8px rgba(124,102,255,.12);
+            backdrop-filter: saturate(120%) blur(2px);
+          }
+          .bb-item{
+            --violet: #6b57ff;
+            --light: #7c66ff22;
+            width: 44px; height: 44px; border-radius: 14px;
+            display: inline-flex; align-items: center; justify-content: center;
+            color: #7c7aa5; text-decoration: none; background: transparent; border: 1px solid transparent;
+            transition: transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease;
+            position: relative;
+          }
+          .bb-item i{ font-size: 19px; }
+          .bb-item:hover{ background: #f5f3ff; color: var(--violet); border-color: var(--light); transform: translateY(-3px); box-shadow: 0 6px 16px rgba(124,102,255,.18); }
+          .bb-item.is-active{ background: #f5f3ff; border-color: var(--light); color: var(--violet); box-shadow: inset 0 0 0 6px #edeaff; }
+          .bb-primary{
+            width: 48px; height: 48px; border-radius: 999px; background: #3a54ff; color: #fff; border: none;
+            box-shadow: 0 10px 24px rgba(58,84,255,.35), 0 4px 8px rgba(58,84,255,.25); transform: translateY(-6px);
+          }
+          .bb-primary:hover{ transform: translateY(-10px) scale(1.04); }
+          .bb-primary:active{ transform: translateY(-6px) scale(.98); }
+          .bb-item[data-tip]::after{
+            content: attr(data-tip); position: absolute; bottom: 58px; left: 50%; transform: translateX(-50%) translateY(6px);
+            background: #2a2a38; color: #fff; font-size: 11px; padding: 6px 8px; border-radius: 8px;
+            opacity: 0; pointer-events: none; transition: opacity .18s ease, transform .18s ease; white-space: nowrap;
+          }
+          .bb-item:hover::after{ opacity: 1; transform: translateX(-50%) translateY(0); }
+          body{ padding-bottom: 92px; }
+        }
+        @media (min-width: 601px){ .bottom-bar{ display:none; } }
+    </style>
+</head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen"><div class="loader"></div></div>
+
     <div id="header">
         <div class="container">
             <nav>
-                <img src="images/logo.jpeg" class="logo">
+                <img src="images/logo.jpeg" class="logo floating" />
                 <ul id="sidemenu">
                     <li><a href="#header">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#technical-skills">Skills</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>  
-                    <li><a href="#contact">Contact</a></li> 
-                    <i class="fa-regular fa-circle-xmark" onclick="closemenu()"></i>               
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fa-regular fa-circle-xmark" onclick="closemenu()"></i>
                 </ul>
-
-                <i class="fa-solid fa-bars"onclick="openmenu()"></i>
+                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
             </nav>
             <div class="header-text">
-                <p>Sofware Developer</p>
-                <h1>Hi, I'm <span>Naveen </span>Davis<br> From India</h1>
-             </div>
+                <p>Software Developer</p>
+                <h1>Hi, I'm <span class="">Naveen</span> Davis<br/> From India</h1>
+            </div>
         </div>
-
     </div>
-    <!-------------about------------->
+
+    <!-- about -->
     <div id="about">
         <div class="container">
             <div class="row">
-                <div class="about-col-1">
-                    <img src="images/nav.jpeg" alt=""> 
+                <div class="about-col-1 fade-in-left">
+                    <img src="images/nav.jpeg" alt="" class="floating" />
                 </div>
-                <div class="about-col-2">
-                    <h1 class="sub-title">About Me</h1><br>
-                    <p>Welcome to my portfolio website! I'm Naveen, a passionate and experienced full-stack software engineer with a strong focus on backend development using Java. With a deep understanding of software architecture and a knack for problem-solving, I've crafted efficient and scalable solutions that drive seamless user experiences.
-
-Throughout my journey, I've honed my skills in designing and implementing robust backend systems that power applications. From creating APIs to managing databases, I thrive in architecting the core of applications that ensure smooth functionality and data integrity.
-
-This portfolio showcases a collection of my projects that highlight my expertise in Java backend development. I invite you to explore how I've tackled challenges, optimized performance, and collaborated with teams to deliver exceptional results. Thank you for visiting, and I look forward to sharing my coding journey with you.
-                    </p>
+                <div class="about-col-2 fade-in-right">
+                    <h1 class="sub-title" data-text="About Me">About Me</h1><br/>
+                    <p class="fade-in-up">Welcome to my portfolio website! I'm Naveen, a passionate and experienced full-stack software engineer with a strong focus on backend development using Java. With a deep understanding of software architecture and a knack for problem-solving, I've crafted efficient and scalable solutions that drive seamless user experiences.</p>
+                    <p class="fade-in-up stagger-2">Throughout my journey, I've honed my skills in designing and implementing robust backend systems that power applications. From creating APIs to managing databases, I thrive in architecting the core of applications that ensure smooth functionality and data integrity.</p>
+                    <p class="fade-in-up stagger-3">This portfolio showcases a collection of my projects that highlight my expertise in Java backend development. I invite exploration of challenges tackled, performance optimizations, and collaborative deliveries.</p>
                     <div class="tab-titles">
                         <p class="tab-links active-links" onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links"  onclick="opentab('experience')">Experience</p>
-                        <p class="tab-links"  onclick="opentab('educations')">Educations</p>
+                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                        <p class="tab-links" onclick="opentab('educations')">Educations</p>
                     </div>
-                    <div class="tab-contents active-tab " id="skills">
+                    <div class="tab-contents active-tab" id="skills">
                         <ul>
-                            <li> <span>Backend Development</span><br>Complex Backend Application</li>
-                            <li> <span>Web Development</span><br>Web app Development</li>
-                            <li> <span>App Development</span><br>Building Android/ios apps</li>
-                            <li> <span>UI/UX</span><br>Desiging Web/Apps interfaces</li>
+                            <li><span>Backend Development</span><br/>Complex Backend Application</li>
+                            <li><span>Web Development</span><br/>Web app Development</li>
+                            <li><span>App Development</span><br/>Building Android/ios apps</li>
+                            <li><span>UI/UX</span><br/>Designing Web/Apps interfaces</li>
                         </ul>
                     </div>
-                    <div class="tab-contents " id="experience">
+                    <div class="tab-contents" id="experience">
                         <ul>
-                            <li> <span>2022 - 2025(Current)</span><br>Fullstack Developer @Ibs Software</li>
-                            <li> <span>2022 - (Jan-Mar)</span><br>Data Science Internship</li>
-                            <li> <span>2021 - 2022</span><br>Circuit Designer @ATWIC R&D</li>
+                            <li><span>2022 - 2025(Current)</span><br/>Fullstack Developer @Ibs Software</li>
+                            <li><span>2022 - (Jan-Mar)</span><br/>Data Science Internship</li>
+                            <li><span>2021 - 2022</span><br/>Circuit Designer @ATWIC R&amp;D</li>
                         </ul>
                     </div>
-                    <div class="tab-contents " id="educations">
+                    <div class="tab-contents" id="educations">
                         <ul>
-                            <li> <span>2021</span><br>B-Tech from APJ Abdul Kalam Technological University</li>
-                            <li> <span>2017</span><br>Plus Two from GVHSS Cherpu</li>
-                            <li> <span>2015</span><br>Tenth from GHSS Pattikad</li>
+                            <li><span>2021</span><br/>B-Tech from APJ Abdul Kalam Technological University</li>
+                            <li><span>2017</span><br/>Plus Two from GVHSS Cherpu</li>
+                            <li><span>2015</span><br/>Tenth from GHSS Pattikad</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-------------------Services------------->
+
+    <!-- services -->
     <div id="services">
         <div class="container">
-            <h1 class="sub-title">My Services</h1>
+            <h1 class="sub-title fade-in-up" data-text="My Services">My Services</h1>
             <div class="services-list">
-              <div>
-                  <i class="fa-solid fa-code"></i>
-                  <h2>Web Development</h2>
-                  <p>web development Works-Portfolio,e-commerce,Personal Website,Social Media</p>
-                  <a href="#">Learn more</a>
+                <div class="fade-in-up stagger-1">
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Web Development</h2>
+                    <p>web development Works-Portfolio,e-commerce,Personal Website,Social Media</p>
+                    <a href="#">Learn more</a>
                 </div>
-                <div>
+                <div class="fade-in-up stagger-2">
                     <i class="fa-solid fa-crop"></i>
                     <h2>Backend Development</h2>
-                    <p>Backend Development Works-API Development,Online Booking System Backend,Real-Time Messaging Application Backend</p>
+                    <p>API Development, Online Booking System Backend, Real-Time Messaging Backend</p>
                     <a href="#">Learn more</a>
                 </div>
-                <div>
+                <div class="fade-in-up stagger-3">
                     <i class="fa-brands fa-app-store"></i>
-                    <h2>Deployment and DevOps/Database Management</h2>
-                    <p>Proficiency in database systems such as MySQL, MongoDB, PostgreSQL,along with expertise in SQL or NoSQL databases. Additionally, showcasing knowledge of deploying web applications to cloud platforms like AWS, Azure, or Google Cloud, and familiarity with CI/CD pipelines using tools like Jenkins or GitLab CI/CD</p>
+                    <h2>Deployment and DevOps/DB</h2>
+                    <p>MySQL, MongoDB, PostgreSQL, AWS/Azure/GCP deploy, CI/CD (Jenkins/GitLab).</p>
                     <a href="#">Learn more</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-------------------Technical Skills------------->
+
+    <!-- technical skills -->
     <div id="technical-skills">
         <div class="container">
-            <h1 class="sub-title">Technical Skills</h1><br>
+            <h1 class="sub-title fade-in-up" data-text="Technical Skills">Technical Skills</h1><br/>
             <div class="skill-cards">
-                <div class="skill-card card1">
-                    <img src="images/java.png" alt="Java">  
-                    <div class="card-content">
-                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Java</h2>
-                    </div>
+                <!-- Cards unchanged (truncated for brevity in this comment: keep all your cards here) -->
+                <!-- Keep your full set of skill-card blocks -->
+                <div class="skill-card card1 scale-in stagger-1">
+                    <img src="images/java.png" alt="Java" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Java</h2></div>
                 </div>
-                
-                <div class="skill-card card2">
-                    <img src="images/nodejs.png" alt="Node JS" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Node JS</h2>
-                    </div>
+                <div class="skill-card card2 scale-in stagger-2">
+                    <img src="images/nodejs.png" alt="Node JS" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Node JS</h2></div>
                 </div>
-                
-                <div class="skill-card card3" >
-                    <img src="images/python.png" alt="Python" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Python</h2>
-                    </div>
+                <div class="skill-card card3 scale-in stagger-3">
+                    <img src="images/python.png" alt="Python" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Python</h2></div>
                 </div>
-                <div class="skill-card card4">
-                    <img src="images/kotlin.png" alt="kotlin" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Kotlin</h2>
-                    </div>
+                <div class="skill-card card4 scale-in stagger-4">
+                    <img src="images/kotlin.png" alt="Kotlin" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Kotlin</h2></div>
                 </div>
-                <div class="skill-card card5">
-                    <img src="images/springboot.png" alt="SpringBoot" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Spring Boot</h2>
-                    </div>
+                <div class="skill-card card5 scale-in stagger-5">
+                    <img src="images/springboot.png" alt="SpringBoot" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Spring Boot</h2></div>
                 </div>
-                <div class="skill-card card9">
-                    <img src="images/bootstrap.png" alt="Bootstrap" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Bootstrap</h2>
-                    </div>
-                </div>                
-                <div class="skill-card card7">
-                    <img src="images/react.png" alt="ReactJS" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">ReactJS</h2>
-                    </div>
+                <div class="skill-card card9 scale-in stagger-6">
+                    <img src="images/bootstrap.png" alt="Bootstrap" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Bootstrap</h2></div>
                 </div>
-                <div class="skill-card card8">
-                    <img src="images/angular.png" alt="Angular" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Angular</h2>
-                    </div>
+                <div class="skill-card card7 scale-in stagger-1">
+                    <img src="images/react.png" alt="ReactJS" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">ReactJS</h2></div>
                 </div>
-                <div class="skill-card card6">
-                    <img src="images/html.png" alt="HTML" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">HTML</h2>
-                    </div>
+                <div class="skill-card card8 scale-in stagger-2">
+                    <img src="images/angular.png" alt="Angular" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Angular</h2></div>
                 </div>
-                <div class="skill-card card10">
-                    <img src="images/tailwind.png" alt="ReactJS" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff; font-family: Times, Times New Roman, serif;">Tailwind CSS</h2>
-                    </div>
+                <div class="skill-card card6 scale-in stagger-3">
+                    <img src="images/html.png" alt="HTML" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">HTML</h2></div>
                 </div>
-                <div class="skill-card card12">
-                    <img src="images/postgresql.png" alt="PostgreSQL" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff; font-family: Times, Times New Roman, serif;">PostgreSQL</h2>
-                    </div>
+                <div class="skill-card card10 scale-in stagger-4">
+                    <img src="images/tailwind.png" alt="Tailwind" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Tailwind CSS</h2></div>
                 </div>
-                <div class="skill-card card11">
-                    <img src="images/oracle.png" alt="OracleSQL" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff; font-family: Times, Times New Roman, serif;">OracleSQL</h2>
-                    </div>
-                </div>       
-                <div class="skill-card card14">
-                    <img src="images/docker.png" alt="Docker" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff; font-family: Times, Times New Roman, serif;">Docker</h2>
-                    </div>
+                <div class="skill-card card12 scale-in stagger-5">
+                    <img src="images/postgresql.png" alt="PostgreSQL" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">PostgreSQL</h2></div>
                 </div>
-                <div class="skill-card card13">
-                    <img src="images/aws.png" alt="AWS" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff; font-family: Times, Times New Roman, serif;">AWS</h2>
-                    </div>
+                <div class="skill-card card11 scale-in stagger-6">
+                    <img src="images/oracle.png" alt="OracleSQL" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">OracleSQL</h2></div>
                 </div>
-                <div class="skill-card card15">
-                    <img src="images/googlecloud.png" alt="GoogleCloud" >  
-                    <div class="card-content">
-                        <h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Google Cloud</h2>
-                    </div>
+                <div class="skill-card card14 scale-in stagger-1">
+                    <img src="images/docker.png" alt="Docker" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Docker</h2></div>
+                </div>
+                <div class="skill-card card13 scale-in stagger-2">
+                    <img src="images/aws.png" alt="AWS" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">AWS</h2></div>
+                </div>
+                <div class="skill-card card15 scale-in stagger-3">
+                    <img src="images/googlecloud.png" alt="Google Cloud" />
+                    <div class="card-content"><h2 style="color:#fff;font-family: Times, Times New Roman, serif;">Google Cloud</h2></div>
                 </div>
             </div>
         </div>
     </div>
-    <!-------------------portfolio------------->
+
+    <!-- portfolio -->
     <div id="portfolio">
         <div class="container">
-            <h1 class="sub-title">My Work</h1>
+            <h1 class="sub-title fade-in-up" data-text="My Work">My Work</h1>
             <div class="work-list">
-                <div class="work">
+                <div class="work scale-in stagger-1">
                     <img src="images/devpayinsightimg.png" alt="">
                     <div class="layer">
-                       <h3 style="font-weight: bold;">DevPayInsight.com <br><br>(Spring Boot Web App)</h3>
-                       <p>DevPayInsight.com is a go-to destination for developers, offering invaluable assistance in resolving payment-related issues, exceptional exception handling, and insightful analysis, all tailored to streamline development processes.</p>
-                       <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <h3 style="font-weight: bold;">DevPayInsight.com <br><br>(Spring Boot Web App)</h3>
+                        <p>DevPayInsight.com is a go-to destination for developers, offering payment issue assistance and insightful analysis.</p>
+                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
-                <div class="work">
+                <div class="work scale-in stagger-2">
                     <img src="images/codesphereimg.jpg" alt="">
                     <div class="layer">
-                        <h3 style="font-weight: bold;">CODESPHERE <br><br> (Full Stack App)</h3>
-                        <p>The app aids developers in simplifying their development process by offering AI assistance, idea-sharing features, real-time chatting capabilities, and more.
-                        </p>
+                        <h3 style="font-weight: bold;">CODESPHERE <br><br>(Full Stack App)</h3>
+                        <p>AI assistance, idea sharing, real-time chat, and more to simplify development.</p>
                         <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                     </div>
+                    </div>
                 </div>
-                <div class="work">
+                <div class="work scale-in stagger-3">
                     <img src="images/ideogramimg.png" alt="">
                     <div class="layer">
                         <h3 style="font-weight: bold;">Ideogram</h3>
-                        <p>Ideogram is a dynamic platform fostering idea exchange and collaboration, connecting individuals worldwide to share innovative concepts and insights.</p>
+                        <p>Platform for global idea exchange and collaboration.</p>
                         <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                     </div>
+                    </div>
                 </div>
             </div>
             <div class="work-list">
-                <div class="work">
+                <div class="work scale-in stagger-4">
                     <img src="images/chating.png" alt="">
                     <div class="layer">
-                       <h3 style="font-weight: bold;">Sandesh<br><br> (stack App)</h3>
-                       <p>Application offers seamless communication for users, providing a secure and user-friendly platform to connect with friends and family.With its real-time messaging capabilities and intuitive interface, the chat application ensures effortless communication, fostering meaningful connections and interactions.</p>
-                       <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <h3 style="font-weight: bold;">Sandesh<br><br>(Stack App)</h3>
+                        <p>Secure, user-friendly chat app with real-time messaging.</p>
+                        <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
-                <div class="work">
+                <div class="work scale-in stagger-5">
                     <img src="images/crickfeverzone.png" alt="">
                     <div class="layer">
                         <h3 style="font-weight: bold;">CricFever.com</h3>
-                        <p>CricFever serves as the ultimate destination for cricket enthusiasts, delivering live scores, venue information, and comprehensive match details.
-                        </p>
+                        <p>Live scores, venues, and comprehensive match details for cricket fans.</p>
                         <a href="https://naveendavis.github.io/CricketFeverZone/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                     </div>
+                    </div>
                 </div>
-                <div class="work">
+                <div class="work scale-in stagger-6">
                     <img src="images/aiassistanceimg.png" alt="">
                     <div class="layer">
                         <h3 style="font-weight: bold;">CodeMateAI</h3>
-                        <p>CodeMateAI is an innovative platform designed to assist developers with advanced AI-driven tools, streamlining the coding process and enhancing productivity.</p>
+                        <p>AI-driven tools to streamline coding and boost productivity.</p>
                         <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                     </div>
+                    </div>
                 </div>
             </div>
-           <a href="#" class="btn">See more</a>
+            <a href="#" class="btn fade-in-up">See more</a>
         </div>
     </div>
-     <!-------------------contact naveen davis------------->
-     <div id="contact">
-         <div class="container">
-             <div class="row">
-                 <div class="contact-left">
-                    <h1 class="sub-title">Contact Me</h1>
+
+    <!-- contact -->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left fade-in-left">
+                    <h1 class="sub-title" data-text="Contact Me">Contact Me</h1>
                     <p><i class="fa-solid fa-paper-plane"></i>naveendavis99@gmail.com</p>
                     <p><i class="fa-solid fa-square-phone"></i>91-9746550161</p>
                     <div class="socialmedia-ions">
@@ -280,85 +462,172 @@ This portfolio showcases a collection of my projects that highlight my expertise
                         <a href="https://www.instagram.com/naveen_doz?igsh=MTY0Mjc5b3h3bDFueg=="><i class="fa-brands fa-instagram"></i></a>
                         <a href="https://www.linkedin.com/in/naveendavis"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
-                    <a href=""  class="btn btn2">Download Cv</a>
-
-
-                 </div>
-                 <div class="contact-right">
-                     <form name="submit-to-google-sheet" >
-                         <input type="text" name="Name" placeholder="Your Name" required>
-                         <input type="email" name="Email" placeholder="Your Email" required>
-                         <textarea name="Message"  rows="6" placeholder="Your Meassage"></textarea>
-                         <button type="submit" class="btn btn2">Submit</button>
-                     </form>
-                     <span id="msg"></span>
-					 <span id="msgsumbit"></span>
+                    <a href="" class="btn btn2">Download CV</a>
                 </div>
-             </div>
-         </div>
-         <div class="uparrow-header">
-             <a href="#header"><i class="fa-solid fa-arrow-up-from-bracket" id="uparrow"></i> </a>
-         </div>
-         <div class="copy-write">
-             <p class="text-copy"> &copy; Copyright <Span>Naveen Davis</Span>. All Rights Reserved </p>
-             <p class="text-design">Designed by Naveen Davis</p>
-         </div>
-     </div>
-     <div class="icons">
-       <ul>
+                <div class="contact-right fade-in-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required />
+                        <input type="email" name="Email" placeholder="Your Email" required />
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                    <span id="msgsumbit"></span>
+                </div>
+            </div>
+        </div>
+        <div class="uparrow-header">
+            <a href="#header"><i class="fa-solid fa-arrow-up-from-bracket" id="uparrow"></i></a>
+        </div>
+        <div class="copy-write">
+            <p class="text-copy">&copy; Copyright <span>Naveen Davis</span>. All Rights Reserved</p>
+            <p class="text-design">Designed by Naveen Davis</p>
+        </div>
+    </div>
+
+    <!-- Floating Bottom Bar (mobile only) -->
+    <nav class="bottom-bar" aria-label="Primary">
+      <a href="#header" class="bb-item" data-tip="Home"><i class="fa-solid fa-house"></i></a>
+      <a href="#services" class="bb-item" data-tip="Services"><i class="fa-regular fa-heart"></i></a>
+      <button class="bb-item bb-primary" id="bbAction" aria-label="Add"><i class="fa-solid fa-plus"></i></button>
+      <a href="#contact" class="bb-item" data-tip="Contact"><i class="fa-regular fa-envelope"></i></a>
+      <a href="#about" class="bb-item" data-tip="Profile"><i class="fa-regular fa-user"></i></a>
+    </nav>
+
+    <div class="icons">
+        <ul>
             <a href="https://github.com/NaveenDavis/"><li class="github"><i class="fa-brands fa-github"></i></li></a>
             <a href="https://www.youtube.com/@Codesphere-co"><li class="youtube"><i class="fa-brands fa-youtube"></i></li></a>
             <a href="https://www.linkedin.com/in/naveendavis"><li class="linkedin"><i class="fa-brands fa-linkedin"></i></li></a>
             <a href="https://www.instagram.com/naveen_doz?igsh=MTY0Mjc5b3h3bDFueg=="><li class="instagram"><i class="fa-brands fa-instagram"></i></li></a>
-            
-       </ul>
+        </ul>
     </div>
-    
+
     <script>
-        var tablinks =document.getElementsByClassName("tab-links");
-        var tabcontents =document.getElementsByClassName("tab-contents");
-        function opentab(tabname){
-          for(tablink of tablinks){
-            tablink.classList.remove("active-links");
+        // Loading Screen Animation
+        window.addEventListener('load', function() {
+            setTimeout(() => document.getElementById('loadingScreen').classList.add('hidden'), 1500);
+        });
+
+        // Tabs
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname) {
+            for (tablink of tablinks) tablink.classList.remove("active-links");
+            for (tabcontent of tabcontents) tabcontent.classList.remove("active-tab");
+            event.currentTarget.classList.add("active-links");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+
+        // Mobile menu
+        var sidemenu = document.getElementById("sidemenu");
+        function openmenu(){ sidemenu.style.right = "0"; sidemenu.classList.add('active'); }
+        function closemenu(){ sidemenu.style.right = "-200px"; sidemenu.classList.remove('active'); }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a=>{
+          a.addEventListener('click',e=>{
+            const id = a.getAttribute('href');
+            if (!id || id==="#") return;
+            const target = document.querySelector(id);
+            if (!target) return;
+            e.preventDefault();
+            target.scrollIntoView({behavior:'smooth', block:'start'});
+            closemenu();
+          });
+        });
+
+        // Intersection animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver(entries=>{
+          entries.forEach(entry=>{
+            if (entry.isIntersecting) entry.target.classList.add('animate');
+            else entry.target.classList.remove('animate');
+          });
+        }, observerOptions);
+        document.addEventListener('DOMContentLoaded', function() {
+          document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in, .rotate-in, .sub-title')
+            .forEach(el=>observer.observe(el));
+        });
+
+        // Form submit to Google Sheet
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzJBSgDfF8hesS_6P83Ji5aUfuUtUvlF70CVB6GkBI9eXJH_0dklXJG3bMjZjnKuTbX_Q/exec';
+        const form = document.forms['submit-to-google-sheet'];
+        const msg = document.getElementById("msg");
+        const msgsumbit = document.getElementById("msgsumbit");
+        if (form) {
+          form.addEventListener('submit', e => {
+            e.preventDefault();
+            msgsumbit.innerHTML = "Message successfully added";
+            msgsumbit.classList.add('show');
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+              .then(() => {
+                msgsumbit.innerHTML = "";
+                msgsumbit.classList.remove('show');
+                msg.innerHTML = "Message sent successfully";
+                msg.classList.add('show');
+                setTimeout(()=>{ msg.innerHTML=""; msg.classList.remove('show'); }, 3000);
+                form.reset();
+              })
+              .catch(() => {
+                msgsumbit.innerHTML = "";
+                msgsumbit.classList.remove('show');
+                msg.innerHTML = "Failed to send. Try again.";
+                msg.classList.add('show');
+                setTimeout(()=>{ msg.innerHTML=""; msg.classList.remove('show'); }, 3000);
+              });
+          });
+        }
+
+        // Active nav link on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section, div[id]');
+            const navLinks = document.querySelectorAll('nav ul li a');
+            let current = '';
+            sections.forEach(section => {
+                const top = section.offsetTop - 100;
+                if (scrollY >= top) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+            });
+        });
+
+        // Parallax
+        window.addEventListener('scroll', ()=>{
+          const scrolled = window.pageYOffset;
+          document.querySelectorAll('.parallax').forEach(el=>{
+            const speed = el.dataset.speed || 0.5;
+            el.style.transform = `translateY(${-(scrolled*speed)}px)`;
+          });
+        });
+        document.querySelectorAll('.floating').forEach(el=>{ el.classList.add('parallax'); el.dataset.speed='0.3'; });
+
+        // Bottom bar active sync + primary action
+        (function(){
+          const items = document.querySelectorAll('.bottom-bar .bb-item[href^="#"]');
+          const sections = [...items].map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+          if (sections.length && 'IntersectionObserver' in window) {
+            const io = new IntersectionObserver(entries=>{
+              const v = entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+              if (!v) return;
+              items.forEach(a=>a.classList.toggle('is-active', a.getAttribute('href') === '#'+v.target.id));
+            }, { threshold:[0.3,0.6,0.9], rootMargin:'-20% 0 -60% 0' });
+            sections.forEach(s=>io.observe(s));
           }
-          for(tabcontent of tabcontents){
-            tabcontent.classList.remove("active-tab");
-          }
-          event.currentTarget.classList.add("active-links");
-          document.getElementById(tabname).classList.add("active-tab");
+          const action = document.getElementById('bbAction');
+          if (action) action.addEventListener('click', ()=>{
+            const el = document.querySelector('#contact') || document.body;
+            el.scrollIntoView({behavior:'smooth', block:'start'});
+          });
+        })();
+
+        // Reduce animations on very low core devices
+        if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) {
+          document.documentElement.style.setProperty('--transition-duration', '0.2s');
         }
     </script>
-    <script>
-        var sidemenu=document.getElementById("sidemenu")
-        function openmenu(){
-            sidemenu.style.right="0";
-        }
-        function closemenu(){
-            sidemenu.style.right="-200px";
-        }
-    </script>
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzJBSgDfF8hesS_6P83Ji5aUfuUtUvlF70CVB6GkBI9eXJH_0dklXJG3bMjZjnKuTbX_Q/exec'
-        const form = document.forms['submit-to-google-sheet']
-        const msg=document.getElementById("msg");
-		const msgsumbit=document.getElementById("msgsumbit");
-
-        form.addEventListener('submit', e => {
-
-          e.preventDefault()
-		 msgsumbit.innerHTML="Message successfully added"
-          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-			    msgsumbit.innerHTML=""
-                msg.innerHTML="Message sent successfully"
-                setTimeout(function(){
-                    msg.innerHTML=""
-                },3000)
-                 form.reset()
-            })
-            .catch(error => console.error('Error!', error.message))
-        })
-      </script>
-      <script src="https://kit.fontawesome.com/f8021ea59e.js" crossorigin="anonymous"></script>
-    </body>
-    </html>
+    <script src="https://kit.fontawesome.com/f8021ea59e.js" crossorigin="anonymous"></script>
+</body>
+</html>
