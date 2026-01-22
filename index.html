@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Naveen's Portfolio Website</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style-professional.css" />
     <link rel="website icon" type="svg" href="images/bannerlogo.png" /> 
 </head>
 <body>
@@ -19,18 +19,46 @@
                     <div class="logo-circle">N</div>
                     <span class="logo">Naveen.</span>
                 </div>
-                <ul id="sidemenu">
-                    <li><a href="#header" class="nav-link active" data-icon="&#xf015;">Home</a></li>
-                    <li><a href="#services" class="nav-link" data-icon="&#xf0ad;">Services</a></li>
-                    <li><a href="#about" class="nav-link" data-icon="&#xf007;">About</a></li>
-                    <li><a href="#portfolio" class="nav-link" data-icon="&#xf0b1;">Projects</a></li>
-                    <li><a href="#technical-skills" class="nav-link" data-icon="&#xf0c0;">Experience</a></li>
-                    <li><a href="#contact" class="nav-link" data-icon="&#xf0e0;">Contact</a></li>
-                    <i class="fa-regular fa-circle-xmark" onclick="closemenu()"></i>
+                
+                <!-- Desktop Navigation -->
+                <ul class="nav-desktop">
+                    <li><a href="#header" class="nav-link active">Home</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#portfolio" class="nav-link">Projects</a></li>
+                    <li><a href="#technical-skills" class="nav-link">Experience</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
+                
                 <a href="#contact" class="nav-contact-btn">Contact Me</a>
-                <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+                
+                <!-- Hamburger Button -->
+                <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
             </nav>
+            
+            <!-- Mobile Side Panel -->
+            <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+            <div class="mobile-menu" id="mobileMenu">
+                <button class="mobile-menu-close" id="closeMenuBtn" aria-label="Close menu">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="mobile-menu-header">
+                    <div class="logo-circle">N</div>
+                    <span class="mobile-menu-title">Naveen.</span>
+                </div>
+                <ul class="mobile-menu-list">
+                    <li><a href="#header"><i class="fa-solid fa-house"></i>Home</a></li>
+                    <li><a href="#services"><i class="fa-solid fa-wrench"></i>Services</a></li>
+                    <li><a href="#about"><i class="fa-solid fa-user"></i>About</a></li>
+                    <li><a href="#portfolio"><i class="fa-solid fa-briefcase"></i>Projects</a></li>
+                    <li><a href="#technical-skills"><i class="fa-solid fa-code"></i>Experience</a></li>
+                    <li><a href="#contact"><i class="fa-solid fa-envelope"></i>Contact</a></li>
+                </ul>
+            </div>
             
             <div class="header-content">
                 <div class="header-left">
@@ -299,7 +327,7 @@
                         <a href="https://www.instagram.com/naveen_doz?igsh=MTY0Mjc5b3h3bDFueg=="><i class="fa-brands fa-instagram"></i></a>
                         <a href="https://www.linkedin.com/in/naveendavis"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
-                    <a href="" class="btn btn2">Download CV</a>
+                    <a href="https://drive.google.com/file/d/1hQiZkpRMogzg6JxqTeC3phBxvTcvjGLf/view?usp=drivesdk" class="btn btn2" target="_blank">Download CV</a>
                 </div>
                 <div class="contact-right fade-in-right">
                     <form name="submit-to-google-sheet">
@@ -308,13 +336,24 @@
                         <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
                         <button type="submit" class="btn btn2">Submit</button>
                     </form>
-                    <span id="msg"></span>
-                    <span id="msgsumbit"></span>
                 </div>
             </div>
         </div>
        
     </div>
+
+    <!-- Success Popup Modal -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-modal">
+            <div class="popup-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="popup-title">Message Sent!</h3>
+            <p class="popup-message">Thank you for reaching out. I'll get back to you soon!</p>
+            <button class="popup-btn" id="popupCloseBtn">Got it!</button>
+        </div>
+    </div>
+
        <div class="uparrow-header">
             <a href="#header"><i class="fa-solid fa-arrow-up-from-bracket" id="uparrow"></i></a>
         </div>
@@ -325,12 +364,20 @@
     </div>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/919746550191?text=Hi%20Naveen....!" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/9746550191?text=Hi%20Naveen....!" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Menu Overlay -->
-    <div class="menu-overlay" id="menuOverlay"></div>
+    <!-- Email Floating Button -->
+    <a href="mailto:naveendavis99@gmail.com" class="email-float" aria-label="Send Email">
+        <svg viewBox="52 42 88 66" width="30" height="24">
+            <path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6"/>
+            <path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15"/>
+            <path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2"/>
+            <path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92"/>
+            <path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2"/>
+        </svg>
+    </a>
 
     <!-- Floating Bottom Bar (mobile only) -->
     <nav class="bottom-bar" aria-label="Primary">
@@ -366,46 +413,36 @@
             document.getElementById(tabname).classList.add("active-tab");
         }
 
-        // Mobile menu
-        let sidemenu, menuOverlay;
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            sidemenu = document.getElementById("sidemenu");
-            menuOverlay = document.getElementById("menuOverlay");
-            
-            // Close menu when clicking on a link
-            if (sidemenu) {
-                document.querySelectorAll('#sidemenu a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        closemenu();
-                    });
-                });
-            }
-            
-            // Close menu when clicking overlay
-            if (menuOverlay) {
-                menuOverlay.addEventListener('click', closemenu);
-            }
+        // ========== NEW MOBILE MENU - CLEAN BUILD ==========
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-list a');
+
+        // Open menu
+        hamburgerBtn.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+            mobileOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
-        
-        function openmenu(){ 
-            if (sidemenu && menuOverlay) {
-                sidemenu.style.right = "0"; 
-                sidemenu.classList.add('open');
-                menuOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
+
+        // Close menu
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
         }
-        
-        function closemenu(){ 
-            if (sidemenu && menuOverlay) {
-                sidemenu.style.right = "-100%"; 
-                sidemenu.classList.remove('open');
-                menuOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-        
+
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
+        mobileOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close menu when clicking a link
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        // ========== END MOBILE MENU ==========
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(a=>{
           a.addEventListener('click',e=>{
@@ -415,7 +452,6 @@
             if (!target) return;
             e.preventDefault();
             target.scrollIntoView({behavior:'smooth', block:'start'});
-            closemenu();
           });
         });
 
@@ -435,28 +471,61 @@
         // Form submit to Google Sheet
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzJBSgDfF8hesS_6P83Ji5aUfuUtUvlF70CVB6GkBI9eXJH_0dklXJG3bMjZjnKuTbX_Q/exec';
         const form = document.forms['submit-to-google-sheet'];
-        const msg = document.getElementById("msg");
-        const msgsumbit = document.getElementById("msgsumbit");
+        const popupOverlay = document.getElementById("popupOverlay");
+        const popupCloseBtn = document.getElementById("popupCloseBtn");
+        
+        // Popup functions
+        function showPopup() {
+            popupOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function hidePopup() {
+            popupOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close popup on button click
+        if (popupCloseBtn) {
+            popupCloseBtn.addEventListener('click', hidePopup);
+        }
+        
+        // Close popup on overlay click
+        if (popupOverlay) {
+            popupOverlay.addEventListener('click', function(e) {
+                if (e.target === popupOverlay) {
+                    hidePopup();
+                }
+            });
+        }
+        
+        // Close popup on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && popupOverlay.classList.contains('active')) {
+                hidePopup();
+            }
+        });
+        
         if (form) {
           form.addEventListener('submit', e => {
             e.preventDefault();
-            msgsumbit.innerHTML = "Message successfully added";
-            msgsumbit.classList.add('show');
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
               .then(() => {
-                msgsumbit.innerHTML = "";
-                msgsumbit.classList.remove('show');
-                msg.innerHTML = "Message sent successfully";
-                msg.classList.add('show');
-                setTimeout(()=>{ msg.innerHTML=""; msg.classList.remove('show'); }, 3000);
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
                 form.reset();
+                showPopup();
               })
               .catch(() => {
-                msgsumbit.innerHTML = "";
-                msgsumbit.classList.remove('show');
-                msg.innerHTML = "Failed to send. Try again.";
-                msg.classList.add('show');
-                setTimeout(()=>{ msg.innerHTML=""; msg.classList.remove('show'); }, 3000);
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                alert('Failed to send message. Please try again.');
               });
           });
         }
